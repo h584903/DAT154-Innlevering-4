@@ -4,6 +4,7 @@ using HotelLibrary.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelLibrary.Migrations
 {
     [DbContext(typeof(HotellContext))]
-    partial class HotellContextModelSnapshot : ModelSnapshot
+    [Migration("20240519192116_AddIsCheckedInToReservations")]
+    partial class AddIsCheckedInToReservations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,8 +59,8 @@ namespace HotelLibrary.Migrations
                         new
                         {
                             Id = 1,
-                            CheckInDate = new DateTime(2024, 5, 20, 23, 37, 48, 882, DateTimeKind.Local).AddTicks(9166),
-                            CheckOutDate = new DateTime(2024, 5, 22, 23, 37, 48, 882, DateTimeKind.Local).AddTicks(9215),
+                            CheckInDate = new DateTime(2024, 5, 20, 21, 21, 16, 306, DateTimeKind.Local).AddTicks(3791),
+                            CheckOutDate = new DateTime(2024, 5, 22, 21, 21, 16, 306, DateTimeKind.Local).AddTicks(3841),
                             CustomerName = "John Doe",
                             IsCheckedIn = false,
                             RoomId = 1
@@ -83,15 +86,6 @@ namespace HotelLibrary.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("NeedsCleaning")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("NeedsMaintenance")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("NeedsRoomService")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Size")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -107,9 +101,6 @@ namespace HotelLibrary.Migrations
                             Beds = 2,
                             IsAvailable = true,
                             Name = "Deluxe Suite",
-                            NeedsCleaning = false,
-                            NeedsMaintenance = false,
-                            NeedsRoomService = false,
                             Size = "Large"
                         },
                         new
@@ -118,9 +109,6 @@ namespace HotelLibrary.Migrations
                             Beds = 1,
                             IsAvailable = true,
                             Name = "Standard Room",
-                            NeedsCleaning = false,
-                            NeedsMaintenance = false,
-                            NeedsRoomService = false,
                             Size = "Medium"
                         },
                         new
@@ -129,9 +117,6 @@ namespace HotelLibrary.Migrations
                             Beds = 1,
                             IsAvailable = true,
                             Name = "Single Room",
-                            NeedsCleaning = false,
-                            NeedsMaintenance = false,
-                            NeedsRoomService = false,
                             Size = "Small"
                         });
                 });

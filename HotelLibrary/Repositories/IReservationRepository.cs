@@ -15,5 +15,7 @@ namespace HotelLibrary.Repositories
         Task AddAsync(Reservation reservation);
         Task UpdateAsync(Reservation reservation);
         Task DeleteAsync(int id);
+        Task CheckInAsync(int reservationId);
+        Task CheckOutAsync(int reservationId);
     }
 }

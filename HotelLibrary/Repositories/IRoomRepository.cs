@@ -14,5 +14,10 @@ namespace HotelLibrary.Repositories
         Task AddAsync(Room room);
         Task UpdateAsync(Room room);
         Task DeleteAsync(int id);
+        Task MarkAsNeedsCleaningAsync(int roomId);
+        Task MarkAsNeedsMaintenanceAsync(int roomId);
+        Task MarkAsCleanedAsync(int roomId);
+        Task MarkAsMaintainedAsync(int roomId);
+        Task MarkAsNeedsRoomServiceAsync(int roomId);
     }
 }

@@ -1,0 +1,72 @@
+@WebHotel_HostAddress = http://localhost:5087
+
+### Get all rooms
+GET https://localhost:5001/api/rooms
+Accept: application/json
+
+### Get a specific room by ID
+GET https://localhost:5001/api/rooms/1
+Accept: application/json
+
+### Add a new room
+POST https://localhost:5001/api/rooms
+Content-Type: application/json
+
+{
+  "name": "Luxury Suite",
+  "beds": 2,
+  "size": "Large",
+  "isAvailable": true
+}
+
+### Update an existing room
+PUT https://localhost:5001/api/rooms/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Updated Suite",
+  "beds": 2,
+  "size": "Large",
+  "isAvailable": true
+}
+
+### Delete a room by ID
+DELETE https://localhost:5001/api/rooms/1
+
+### Get all reservations
+GET https://localhost:5001/api/reservations
+Accept: application/json
+
+### Get a specific reservation by ID
+GET https://localhost:5001/api/reservations/1
+Accept: application/json
+
+### Add a new reservation
+POST https://localhost:5001/api/reservations
+Content-Type: application/json
+
+{
+  "roomId": 1,
+  "checkInDate": "2024-05-20T12:00:00Z",
+  "checkOutDate": "2024-05-25T12:00:00Z",
+  "customerName": "John Doe"
+}
+
+### Update an existing reservation
+PUT https://localhost:5001/api/reservations/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "roomId": 1,
+  "checkInDate": "2024-05-20T12:00:00Z",
+  "checkOutDate": "2024-05-25T12:00:00Z",
+  "customerName": "Jane Doe"
+}
+
+### Delete a reservation by ID
+DELETE https://localhost:5001/api/reservations/1
+
+
+###

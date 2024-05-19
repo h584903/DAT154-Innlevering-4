@@ -49,5 +49,57 @@ namespace HotelLibrary.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+        public async Task MarkAsNeedsCleaningAsync(int roomId)
+        {
+            var room = await _context.Rooms.FindAsync(roomId);
+            if (room != null)
+            {
+                room.NeedsCleaning = true;
+                room.IsAvailable = false;
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task MarkAsNeedsMaintenanceAsync(int roomId)
+        {
+            var room = await _context.Rooms.FindAsync(roomId);
+            if (room != null)
+            {
+                room.NeedsMaintenance = true;
+                room.IsAvailable = false;
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task MarkAsCleanedAsync(int roomId)
+        {
+            var room = await _context.Rooms.FindAsync(roomId);
+            if (room != null)
+            {
+                room.NeedsCleaning = false;
+                room.IsAvailable = true;
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task MarkAsMaintainedAsync(int roomId)
+        {
+            var room = await _context.Rooms.FindAsync(roomId);
+            if (room != null)
+            {
+                room.NeedsMaintenance = false;
+                room.IsAvailable = true;
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task MarkAsNeedsRoomServiceAsync(int roomId)
+        {
+            var room = await _context.Rooms.FindAsync(roomId);
+            if (room != null)
+            {
+                room.NeedsRoomService = true;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

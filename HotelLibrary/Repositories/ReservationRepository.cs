@@ -21,12 +21,13 @@ namespace HotelLibrary.Repositories
 
         public async Task<IEnumerable<Reservation>> GetAllAsync()
         {
-            return await _context.Reservations.ToListAsync();
+            return await _context.Reservations.Include(r => r.Room).ToListAsync();
         }
 
         public async Task<Reservation> GetByIdAsync(int id)
         {
-            return await _context.Reservations.FindAsync(id);
+            return await _context.Reservations.Include(r => r.Room).FirstOrDefaultAsync(r => r.Id == id);
+
         }
 
         public async Task AddAsync(Reservation reservation)
@@ -47,6 +48,25 @@ namespace HotelLibrary.Repositories
             if (reservation != null)
             {
                 _context.Reservations.Remove(reservation);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task CheckInAsync(int reservationId)
+        {
+            var reservation = await _context.Reservations.FindAsync(reservationId);
+            if (reservation != null)
+            {
+                reservation.IsCheckedIn = true;
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task CheckOutAsync(int reservationId)
+        {
+            var reservation = await _context.Reservations.FindAsync(reservationId);
+            if (reservation != null)
+            {
+                reservation.IsCheckedIn = false;
                 await _context.SaveChangesAsync();
             }
         }

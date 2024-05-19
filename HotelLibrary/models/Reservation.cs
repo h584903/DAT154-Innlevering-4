@@ -13,7 +13,9 @@ namespace HotelLibrary.models
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public string CustomerName { get; set; }
+        public bool IsCheckedIn { get; set; }
 
         public Room Room { get; set; } // Navigasjon
+
     }
 }

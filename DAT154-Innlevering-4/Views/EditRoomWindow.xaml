@@ -1,0 +1,26 @@
+﻿<Window x:Class="WPF.Views.EditRoomWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EditRoom" Height="450" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Name:" Width="70"/>
+                <TextBox Width="200" Text="{Binding Room.Name, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Beds:" Width="70"/>
+                <TextBox Width="50" Text="{Binding Room.Beds, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Size:" Width="70"/>
+                <TextBox Width="200" Text="{Binding Room.Size, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Available:" Width="70"/>
+                <CheckBox IsChecked="{Binding Room.IsAvailable, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <Button Content="Save" Command="{Binding SaveCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

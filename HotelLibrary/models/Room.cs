@@ -13,5 +13,10 @@ namespace HotelLibrary.models
         public int Beds { get; set; }
         public string Size { get; set; }
         public bool IsAvailable { get; set; }
+        public bool NeedsCleaning { get; set; }
+        public bool NeedsMaintenance { get; set; }
+        public bool NeedsRoomService { get; set; }
+
+
     }
 }
