@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using HotelLibrary;
+using HotelLibrary.data; // Make sure this matches the namespace of your context class
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// Configure the database context to use SQL Server
+builder.Services.AddDbContext<HotellContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

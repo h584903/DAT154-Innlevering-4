@@ -5,9 +5,9 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF", "DAT154-Innlevering-4\WPF.csproj", "{CB3AAFB4-5609-4C4E-9090-71C4373F98FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelLibrary", "HotelLibrary\HotelLibrary.csproj", "{5CE628EA-70E2-424F-AD7E-9E23D292F711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelLibrary", "HotelLibrary\HotelLibrary.csproj", "{5CE628EA-70E2-424F-AD7E-9E23D292F711}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWebApp", "MyWebApp\MyWebApp.csproj", "{F955A457-D962-4145-A321-1BA9A09C179A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelWebApp", "MyWebApp\HotelWebApp.csproj", "{F955A457-D962-4145-A321-1BA9A09C179A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
