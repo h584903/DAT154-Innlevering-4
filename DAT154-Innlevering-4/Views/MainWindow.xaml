@@ -1,0 +1,30 @@
+﻿<Window x:Class="WPF.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <TabControl>
+            <TabItem Header="Rooms">
+                <StackPanel>
+                    <ListBox ItemsSource="{Binding Rooms}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedRoom}"/>
+                    <Button Content="Add Room" Command="{Binding AddRoomCommand}"/>
+                    <Button Content="Edit Room" Command="{Binding EditRoomCommand}"/>
+                    <Button Content="Delete Room" Command="{Binding DeleteRoomCommand}"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Reservations">
+                <StackPanel>
+                    <ListBox ItemsSource="{Binding Reservations}" DisplayMemberPath="CustomerName" SelectedItem="{Binding SelectedReservation}"/>
+                    <Button Content="Add Reservation" Command="{Binding AddReservationCommand}"/>
+                    <Button Content="Edit Reservation" Command="{Binding EditReservationCommand}"/>
+                    <Button Content="Delete Reservation" Command="{Binding DeleteReservationCommand}"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
