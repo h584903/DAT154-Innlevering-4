@@ -61,6 +61,7 @@ namespace WPF.ViewModels
                 await _reservationRepository.UpdateAsync(Reservation);
             }
             Reservation.Room = SelectedRoom;
+            Reservation.RoomId = SelectedRoom.Id;
             MessageBox.Show("Reservation saved successfully.");
             CloseWindow(true);
         }

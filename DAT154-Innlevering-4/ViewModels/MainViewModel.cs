@@ -96,18 +96,23 @@ namespace WPF.ViewModels
 
         private async void LoadData()
         {
+            // Henter info fra database
             var rooms = await _roomRepository.GetAllAsync();
             var reservations = await _reservationRepository.GetAllAsync();
 
+            // Legger til rom
             Rooms.Clear();
             foreach (var room in rooms)
             {
+                room.IsAvailable = _roomRepository.IsRoomAvailable(room.Id, DateTime.Today);
                 Rooms.Add(room);
             }
 
+            // Legger til reservasjoner og knytter til rom
             Reservations.Clear();
             foreach (var reservation in reservations)
             {
+                // Her kommer Room inn i bildet fra modellen
                 reservation.Room = rooms.FirstOrDefault(r => r.Id == reservation.RoomId);
                 Reservations.Add(reservation);
             }

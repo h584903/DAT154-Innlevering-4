@@ -1,6 +1,7 @@
 ﻿using HotelLibrary.data;
 using HotelLibrary.models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,6 @@ namespace HotelLibrary.Repositories
             if (room != null)
             {
                 room.NeedsCleaning = true;
-                room.IsAvailable = false;
                 await _context.SaveChangesAsync();
             }
         }
@@ -66,7 +66,6 @@ namespace HotelLibrary.Repositories
             if (room != null)
             {
                 room.NeedsMaintenance = true;
-                room.IsAvailable = false;
                 await _context.SaveChangesAsync();
             }
         }
@@ -77,7 +76,6 @@ namespace HotelLibrary.Repositories
             if (room != null)
             {
                 room.NeedsCleaning = false;
-                room.IsAvailable = true;
                 await _context.SaveChangesAsync();
             }
         }
@@ -88,7 +86,6 @@ namespace HotelLibrary.Repositories
             if (room != null)
             {
                 room.NeedsMaintenance = false;
-                room.IsAvailable = true;
                 await _context.SaveChangesAsync();
             }
         }
@@ -100,6 +97,23 @@ namespace HotelLibrary.Repositories
                 room.NeedsRoomService = true;
                 await _context.SaveChangesAsync();
             }
+        }
+        public bool IsRoomAvailable(int roomId, DateTime date)
+        {
+            System.Console.WriteLine(date);
+            var reservations = _context.Reservations
+                .Where(r => r.RoomId == roomId &&
+                            r.CheckInDate <= date &&
+                            r.CheckOutDate >= date &&
+                            r.IsCheckedIn)
+                .ToList();
+
+            if (reservations.Any())
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
