@@ -3,5 +3,26 @@
 
 <h1>Room Search Results</h1>
 
-<p>Selected Beds: @Model.Beds</p>
-<p>Selected Size: @Model.Size</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Beds</th>
+            <th>Size</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var room in Model.AvailableRooms)
+        {
+            <tr>
+                <td>@room.Name</td>
+                <td>@room.Beds</td>
+                <td>@room.Size</td>
+                <td>
+                    <a asp-page="./ReserveRoom" asp-route-id="@room.Id">Make booking</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

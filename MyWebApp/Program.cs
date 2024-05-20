@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using HotelLibrary;
-using HotelLibrary.data; // Make sure this matches the namespace of your context class
+using HotelLibrary.data; // Ensure this matches the namespace of your context class
+using HotelLibrary.Repositories; // Make sure this matches the namespace where IRoomRepository and RoomRepository are defined
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ builder.Services.AddRazorPages();
 // Configure the database context to use SQL Server
 builder.Services.AddDbContext<HotellContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Register the repository
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 
 var app = builder.Build();
 

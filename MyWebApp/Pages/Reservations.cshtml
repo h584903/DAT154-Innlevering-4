@@ -2,7 +2,7 @@
 @model HotelWebApp.Pages.ReservationsModel
 
 <p>
-    <a asp-page="RoomQuestion">Create New</a>
+    <a asp-page="RoomQuestion">New booking</a>
 </p>
 <table class="table">
     <thead>
@@ -23,7 +23,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Reservation.Where(r => r.CustomerName == "John Doe"))
+        @foreach (var item in Model.Reservation)
         {
         <tr>
             <td>

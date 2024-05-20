@@ -20,5 +20,6 @@ namespace HotelLibrary.Repositories
         Task MarkAsMaintainedAsync(int roomId);
         Task MarkAsNeedsRoomServiceAsync(int roomId);
         bool IsRoomAvailable(int roomId, DateTime date);
+        bool IsRoomAvailablePeriod(int roomId, DateTime startDate, DateTime stopDate);
     }
 }
