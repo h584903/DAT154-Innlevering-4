@@ -20,7 +20,10 @@
                 <td>@room.Beds</td>
                 <td>@room.Size</td>
                 <td>
-                    <a asp-page="./ReserveRoom" asp-route-id="@room.Id">Make booking</a>
+                    <a asp-page="./ReserveRoom" 
+                       asp-route-id="@room.Id" 
+                       asp-route-start_date="@Request.Query["start_date"]" 
+                       asp-route-stop_date="@Request.Query["stop_date"]">Make booking</a>
                 </td>
             </tr>
         }
