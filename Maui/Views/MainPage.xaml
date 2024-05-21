@@ -5,9 +5,9 @@
 
     <StackLayout Padding="20">
         <Label Text="Please select your role:" FontSize="Large" HorizontalOptions="Center" />
-        <Button Text="Cleaner" Command="{Binding SelectRoleCommand}" CommandParameter="Cleaner" />
-        <Button Text="Service Person" Command="{Binding SelectRoleCommand}" CommandParameter="ServicePerson" />
-        <Button Text="Maintainer" Command="{Binding SelectRoleCommand}" CommandParameter="Maintainer" />
+        <Button Text="Cleaner" Clicked="OnRoleSelected" CommandParameter="Cleaner" />
+        <Button Text="Service Person" Clicked="OnRoleSelected" CommandParameter="ServicePerson" />
+        <Button Text="Maintainer" Clicked="OnRoleSelected" CommandParameter="Maintainer" />
     </StackLayout>
 
 </ContentPage>

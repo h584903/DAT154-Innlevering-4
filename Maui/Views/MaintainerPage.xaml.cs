@@ -1,14 +1,14 @@
-using HotelLibrary.Repositories;
 using Maui.ViewModels;
+using Microsoft.Maui.Controls;
 
-namespace Maui.Views;
-
-public partial class MaintainerPage : ContentPage
+namespace Maui.Views
 {
-    public MaintainerPage(MaintainerViewModel viewModel)
+    public partial class MaintainerPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = viewModel;
+        public MaintainerPage(MaintainerViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
     }
-
 }

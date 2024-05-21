@@ -1,14 +1,14 @@
 using Maui.ViewModels;
-using HotelLibrary.Repositories;
-namespace Maui.Views;
+using Microsoft.Maui.Controls;
 
-
-public partial class CleanerPage : ContentPage
+namespace Maui.Views
 {
-    public CleanerPage(CleanerViewModel viewModel)
+    public partial class CleanerPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = viewModel;
+        public CleanerPage(CleanerViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
     }
-
 }

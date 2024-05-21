@@ -1,13 +1,7 @@
 ﻿using HotelLibrary.models;
 using HotelLibrary.Repositories;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using HotelLibrary.Repositories;
 using Microsoft.Maui.Controls;
 
 namespace Maui.ViewModels
@@ -21,7 +15,7 @@ namespace Maui.ViewModels
             get => tasks;
             set => SetProperty(ref tasks, value);
         }
-        
+
         public ICommand UpdateStatusCommand { get; }
 
         public CleanerViewModel(ITaskRepository taskRepository)
@@ -30,16 +24,27 @@ namespace Maui.ViewModels
             LoadTasks();
             UpdateStatusCommand = new Command<TaskModel>(UpdateStatus);
         }
+
         private async void LoadTasks()
         {
             var tasksFromRepo = await _taskRepository.GetByTypeAsync("Cleaning");
             Tasks = new ObservableCollection<TaskModel>(tasksFromRepo);
         }
+
         private async void UpdateStatus(TaskModel task)
         {
-            task.Status = "Completed";
-            await _taskRepository.UpdateAsync(task);
-            LoadTasks(); // Refresh the list
+            string newStatus = await Application.Current.MainPage.DisplayActionSheet(
+                "Select new status",
+                "Cancel",
+                null,
+                "New", "In Progress", "Completed");
+
+            if (!string.IsNullOrEmpty(newStatus) && newStatus != "Cancel")
+            {
+                task.Status = newStatus;
+                await _taskRepository.UpdateAsync(task);
+                LoadTasks(); // Refresh the list
+            }
         }
     }
 }

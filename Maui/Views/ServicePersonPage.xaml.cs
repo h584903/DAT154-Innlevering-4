@@ -1,16 +1,14 @@
-using HotelLibrary.Repositories;
 using Maui.ViewModels;
 using Microsoft.Maui.Controls;
 
-namespace Maui.Views;
-
-public partial class ServicePersonPage : ContentPage
+namespace Maui.Views
 {
-	
-    public ServicePersonPage(ServicePersonViewModel viewModel)
+    public partial class ServicePersonPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = viewModel;
+        public ServicePersonPage(ServicePersonViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
     }
-
 }
