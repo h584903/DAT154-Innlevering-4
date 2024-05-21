@@ -114,5 +114,20 @@ namespace HotelLibrary.Repositories
 
             return true;
         }
+        public bool IsRoomAvailablePeriod(int roomId, DateTime startDate, DateTime stopDate)
+        {
+            foreach (Reservation reservation in _context.Reservations)
+            {
+                if (reservation.CheckInDate <= startDate && reservation.CheckInDate >= stopDate && roomId == reservation.RoomId)
+                {
+                    return false;
+                }
+                if (reservation.CheckOutDate >= startDate && reservation.CheckOutDate <= stopDate && roomId == reservation.RoomId)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

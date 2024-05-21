@@ -4,43 +4,51 @@ using HotelLibrary.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using HotelLibrary.Repositories;
 
 namespace HotelWebApp.Pages
 {
     public class RoomSearchModel : PageModel
     {
         private readonly HotellContext _context;
+        private readonly IRoomRepository roomRepository;
 
-        public RoomSearchModel(HotellContext context)
+        public RoomSearchModel(HotellContext context, IRoomRepository roomRepository)
         {
             _context = context;
+            this.roomRepository = roomRepository;
         }
 
-        public string? Beds { get; set; }
-        public string? Size { get; set; }
-        public List<Room> AvailableRooms { get; set; }
 
-        public void OnGet(string beds, string size, string start_date, string stop_date)
+        public string Beds { get; set; }
+        public string Size { get; set; }
+        public List<Room> AvailableRooms { get; set; }
+        public List<Reservation> reservationList;
+
+        public async Task OnGetAsync(string beds, string size, string start_date, string stop_date)
         {
-            Console.WriteLine(AvailableRooms);
+            
+
             // Query the database for available rooms based on the search criteria
-            AvailableRooms = _context.Rooms
+            AvailableRooms = await _context.Rooms
                 .Where(r => (r.Beds.ToString() == beds || beds == "*") && (r.Size == size || size == "*"))
-                .ToList();
+                .ToListAsync();
+
+            // Query for all reservations
+            reservationList = await _context.Reservations
+                .ToListAsync();
 
             // Filter the rooms further based on availability between start_date and stop_date
+            AvailableRooms = AvailableRooms.Where(r => roomRepository.IsRoomAvailablePeriod(r.Id, DateTime.Parse(start_date + " 12:00:00"), DateTime.Parse(stop_date + " 11:00:00"))).ToList();
+
+            // List each class(name) of room only once
             AvailableRooms = AvailableRooms
-                .Where(r => IsRoomAvailable(r.Id, start_date, stop_date))
+                .GroupBy(r => r.Name)
+                .Select(group => group.First())
                 .ToList();
         }
 
-        // Method to check room availability for a given date range
-        private bool IsRoomAvailable(int roomId, string startDate, string stopDate)
-        {
-            // Implement logic to check room availability for the given date range
-            // For example, query reservations for the room and check if there are any conflicts
-            // Return true if the room is available, false otherwise
-            return true;
-        }
+        
     }
 }

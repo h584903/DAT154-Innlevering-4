@@ -7,24 +7,29 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HotelLibrary.data;
 using HotelLibrary.models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelWebApp.Pages
 {
+    [Authorize]
     public class ReservationsModel : PageModel
     {
-        private readonly HotelLibrary.data.HotellContext _context;
+        private readonly HotellContext _context;
 
-        public ReservationsModel(HotelLibrary.data.HotellContext context)
+        public ReservationsModel(HotellContext context)
         {
             _context = context;
         }
 
-        public IList<Reservation> Reservation { get;set; } = default!;
+        public IList<Reservation> Reservation { get; set; } = default!;
 
         public async System.Threading.Tasks.Task OnGetAsync()
         {
+            var username = User.Identity.Name; // Get the username of the logged-in user
             Reservation = await _context.Reservations
-                .Include(r => r.Room).ToListAsync();
+                .Where(r => r.CustomerName == username)
+                .Include(r => r.Room)
+                .ToListAsync();
         }
     }
 }

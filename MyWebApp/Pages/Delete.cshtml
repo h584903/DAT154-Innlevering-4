@@ -1,0 +1,12 @@
+﻿@page "{id:int}"
+@model HotelWebApp.Pages.DeleteModel
+
+<h1>Delete Reservation</h1>
+
+<p>Are you sure you want to delete this reservation?</p>
+
+<form method="post">
+    <input type="hidden" asp-for="Reservation.Id" />
+    <button type="submit">Delete</button>
+    <a asp-page="./Reservations">Cancel</a>
+</form>
