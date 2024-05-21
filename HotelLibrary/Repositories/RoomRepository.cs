@@ -29,19 +29,19 @@ namespace HotelLibrary.Repositories
             return await _context.Rooms.FindAsync(id);
         }
 
-        public async Task AddAsync(Room room)
+        public async System.Threading.Tasks.Task AddAsync(Room room)
         {
             await _context.Rooms.AddAsync(room);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Room room)
+        public async System.Threading.Tasks.Task UpdateAsync(Room room)
         {
             _context.Rooms.Update(room);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async System.Threading.Tasks.Task DeleteAsync(int id)
         {
             var room = await _context.Rooms.FindAsync(id);
             if (room != null)
@@ -50,7 +50,7 @@ namespace HotelLibrary.Repositories
                 await _context.SaveChangesAsync();
             }
         }
-        public async Task MarkAsNeedsCleaningAsync(int roomId)
+        public async System.Threading.Tasks.Task MarkAsNeedsCleaningAsync(int roomId)
         {
             var room = await _context.Rooms.FindAsync(roomId);
             if (room != null)
@@ -60,7 +60,7 @@ namespace HotelLibrary.Repositories
             }
         }
 
-        public async Task MarkAsNeedsMaintenanceAsync(int roomId)
+        public async System.Threading.Tasks.Task MarkAsNeedsMaintenanceAsync(int roomId)
         {
             var room = await _context.Rooms.FindAsync(roomId);
             if (room != null)
@@ -70,7 +70,7 @@ namespace HotelLibrary.Repositories
             }
         }
 
-        public async Task MarkAsCleanedAsync(int roomId)
+        public async System.Threading.Tasks.Task MarkAsCleanedAsync(int roomId)
         {
             var room = await _context.Rooms.FindAsync(roomId);
             if (room != null)
@@ -80,7 +80,7 @@ namespace HotelLibrary.Repositories
             }
         }
 
-        public async Task MarkAsMaintainedAsync(int roomId)
+        public async System.Threading.Tasks.Task MarkAsMaintainedAsync(int roomId)
         {
             var room = await _context.Rooms.FindAsync(roomId);
             if (room != null)
@@ -89,7 +89,7 @@ namespace HotelLibrary.Repositories
                 await _context.SaveChangesAsync();
             }
         }
-        public async Task MarkAsNeedsRoomServiceAsync(int roomId)
+        public async System.Threading.Tasks.Task MarkAsNeedsRoomServiceAsync(int roomId)
         {
             var room = await _context.Rooms.FindAsync(roomId);
             if (room != null)
@@ -104,8 +104,7 @@ namespace HotelLibrary.Repositories
             var reservations = _context.Reservations
                 .Where(r => r.RoomId == roomId &&
                             r.CheckInDate <= date &&
-                            r.CheckOutDate >= date &&
-                            r.IsCheckedIn)
+                            r.CheckOutDate >= date)
                 .ToList();
 
             if (reservations.Any())

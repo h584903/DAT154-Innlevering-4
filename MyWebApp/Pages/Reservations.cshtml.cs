@@ -21,7 +21,7 @@ namespace HotelWebApp.Pages
 
         public IList<Reservation> Reservation { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async System.Threading.Tasks.Task OnGetAsync()
         {
             Reservation = await _context.Reservations
                 .Include(r => r.Room).ToListAsync();

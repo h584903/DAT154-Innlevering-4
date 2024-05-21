@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Views.MainPage">
+
+    <StackLayout Padding="20">
+        <Label Text="Please select your role:" FontSize="Large" HorizontalOptions="Center" />
+        <Button Text="Cleaner" Command="{Binding SelectRoleCommand}" CommandParameter="Cleaner" />
+        <Button Text="Service Person" Command="{Binding SelectRoleCommand}" CommandParameter="ServicePerson" />
+        <Button Text="Maintainer" Command="{Binding SelectRoleCommand}" CommandParameter="Maintainer" />
+    </StackLayout>
+
+</ContentPage>

@@ -4,6 +4,7 @@ using HotelLibrary.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelLibrary.Migrations
 {
     [DbContext(typeof(HotellContext))]
-    partial class HotellContextModelSnapshot : ModelSnapshot
+    [Migration("20240520231454_UpdateSchemaWithoutSeeding")]
+    partial class UpdateSchemaWithoutSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -18,5 +18,7 @@ namespace HotelLibrary.models
         public bool NeedsRoomService { get; set; }
 
 
+        public ICollection<TaskModel> Tasks { get; set; } = new List<TaskModel>();
+
     }
 }

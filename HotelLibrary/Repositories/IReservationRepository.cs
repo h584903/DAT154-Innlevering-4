@@ -12,10 +12,10 @@ namespace HotelLibrary.Repositories
     {
         Task<IEnumerable<Reservation>> GetAllAsync();
         Task<Reservation> GetByIdAsync(int id);
-        Task AddAsync(Reservation reservation);
-        Task UpdateAsync(Reservation reservation);
-        Task DeleteAsync(int id);
-        Task CheckInAsync(int reservationId);
-        Task CheckOutAsync(int reservationId);
+        System.Threading.Tasks.Task AddAsync(Reservation reservation);
+        System.Threading.Tasks.Task UpdateAsync(Reservation reservation);
+        System.Threading.Tasks.Task DeleteAsync(int id);
+        System.Threading.Tasks.Task CheckInAsync(int reservationId);
+        System.Threading.Tasks.Task CheckOutAsync(int reservationId);
     }
 }

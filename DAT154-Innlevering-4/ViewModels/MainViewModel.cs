@@ -129,7 +129,6 @@ namespace WPF.ViewModels
                 NeedsCleaning = false,
                 NeedsMaintenance = false,
                 NeedsRoomService = false  // Default value
-
             };
             await _roomRepository.AddAsync(newRoom);
             Rooms.Add(newRoom);

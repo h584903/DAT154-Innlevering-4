@@ -27,42 +27,42 @@ namespace HotelLibrary.services
             return _roomRepository.GetByIdAsync(id);
         }
 
-        public Task AddRoomAsync(Room room)
+        public System.Threading.Tasks.Task AddRoomAsync(Room room)
         {
             return _roomRepository.AddAsync(room);
         }
 
-        public Task UpdateRoomAsync(Room room)
+        public System.Threading.Tasks.Task UpdateRoomAsync(Room room)
         {
             return _roomRepository.UpdateAsync(room);
         }
 
-        public Task DeleteRoomAsync(int id)
+        public System.Threading.Tasks.Task DeleteRoomAsync(int id)
         {
             return _roomRepository.DeleteAsync(id);
         }
 
-        public Task MarkRoomAsNeedsCleaningAsync(int roomId)
+        public System.Threading.Tasks.Task MarkRoomAsNeedsCleaningAsync(int roomId)
         {
             return _roomRepository.MarkAsNeedsCleaningAsync(roomId);
         }
 
-        public Task MarkRoomAsNeedsMaintenanceAsync(int roomId)
+        public System.Threading.Tasks.Task MarkRoomAsNeedsMaintenanceAsync(int roomId)
         {
             return _roomRepository.MarkAsNeedsMaintenanceAsync(roomId);
         }
 
-        public Task MarkRoomAsCleanedAsync(int roomId)
+        public System.Threading.Tasks.Task MarkRoomAsCleanedAsync(int roomId)
         {
             return _roomRepository.MarkAsCleanedAsync(roomId);
         }
 
-        public Task MarkRoomAsMaintainedAsync(int roomId)
+        public System.Threading.Tasks.Task MarkRoomAsMaintainedAsync(int roomId)
         {
             return _roomRepository.MarkAsMaintainedAsync(roomId);
         }
 
-        public Task MarkRoomAsNeedsRoomServiceAsync(int roomId)
+        public System.Threading.Tasks.Task MarkRoomAsNeedsRoomServiceAsync(int roomId)
         {
             return _roomRepository.MarkAsNeedsRoomServiceAsync(roomId);
         }

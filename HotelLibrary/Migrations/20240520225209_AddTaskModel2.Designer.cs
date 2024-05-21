@@ -4,6 +4,7 @@ using HotelLibrary.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelLibrary.Migrations
 {
     [DbContext(typeof(HotellContext))]
-    partial class HotellContextModelSnapshot : ModelSnapshot
+    [Migration("20240520225209_AddTaskModel2")]
+    partial class AddTaskModel2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,6 +54,17 @@ namespace HotelLibrary.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Reservations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CheckInDate = new DateTime(2024, 5, 22, 0, 52, 9, 194, DateTimeKind.Local).AddTicks(5749),
+                            CheckOutDate = new DateTime(2024, 5, 24, 0, 52, 9, 194, DateTimeKind.Local).AddTicks(5923),
+                            CustomerName = "John Doe",
+                            IsCheckedIn = false,
+                            RoomId = 1
+                        });
                 });
 
             modelBuilder.Entity("HotelLibrary.models.Room", b =>
@@ -88,6 +102,41 @@ namespace HotelLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Beds = 2,
+                            IsAvailable = true,
+                            Name = "Deluxe Suite",
+                            NeedsCleaning = false,
+                            NeedsMaintenance = false,
+                            NeedsRoomService = false,
+                            Size = "Large"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Beds = 1,
+                            IsAvailable = true,
+                            Name = "Standard Room",
+                            NeedsCleaning = false,
+                            NeedsMaintenance = false,
+                            NeedsRoomService = false,
+                            Size = "Medium"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Beds = 1,
+                            IsAvailable = true,
+                            Name = "Single Room",
+                            NeedsCleaning = false,
+                            NeedsMaintenance = false,
+                            NeedsRoomService = false,
+                            Size = "Small"
+                        });
                 });
 
             modelBuilder.Entity("HotelLibrary.models.TaskModel", b =>
@@ -127,6 +176,26 @@ namespace HotelLibrary.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Tasks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Clean the Deluxe Suite",
+                            RoomId = 1,
+                            Status = "New",
+                            TaskType = "Cleaning"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Fix the air conditioner",
+                            RoomId = 4,
+                            Status = "New",
+                            TaskType = "Maintenance"
+                        });
                 });
 
             modelBuilder.Entity("HotelLibrary.models.Reservation", b =>

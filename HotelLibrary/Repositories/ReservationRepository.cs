@@ -30,19 +30,19 @@ namespace HotelLibrary.Repositories
 
         }
 
-        public async Task AddAsync(Reservation reservation)
+        public async System.Threading.Tasks.Task AddAsync(Reservation reservation)
         {
             await _context.Reservations.AddAsync(reservation);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Reservation reservation)
+        public async System.Threading.Tasks.Task UpdateAsync(Reservation reservation)
         {
             _context.Reservations.Update(reservation);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async System.Threading.Tasks.Task DeleteAsync(int id)
         {
             var reservation = await _context.Reservations.FindAsync(id);
             if (reservation != null)
@@ -51,7 +51,7 @@ namespace HotelLibrary.Repositories
                 await _context.SaveChangesAsync();
             }
         }
-        public async Task CheckInAsync(int reservationId)
+        public async System.Threading.Tasks.Task CheckInAsync(int reservationId)
         {
             var reservation = await _context.Reservations.FindAsync(reservationId);
             if (reservation != null)
@@ -61,7 +61,7 @@ namespace HotelLibrary.Repositories
             }
         }
 
-        public async Task CheckOutAsync(int reservationId)
+        public async System.Threading.Tasks.Task CheckOutAsync(int reservationId)
         {
             var reservation = await _context.Reservations.FindAsync(reservationId);
             if (reservation != null)

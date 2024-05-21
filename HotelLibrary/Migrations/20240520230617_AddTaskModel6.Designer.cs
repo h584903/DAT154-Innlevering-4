@@ -4,6 +4,7 @@ using HotelLibrary.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelLibrary.Migrations
 {
     [DbContext(typeof(HotellContext))]
-    partial class HotellContextModelSnapshot : ModelSnapshot
+    [Migration("20240520230617_AddTaskModel6")]
+    partial class AddTaskModel6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,6 +130,26 @@ namespace HotelLibrary.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Tasks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 5, 21, 1, 6, 17, 536, DateTimeKind.Local).AddTicks(2368),
+                            Description = "Clean the Deluxe Suite",
+                            RoomId = 1,
+                            Status = "New",
+                            TaskType = "Cleaning"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 5, 21, 1, 6, 17, 536, DateTimeKind.Local).AddTicks(2430),
+                            Description = "Fix the air conditioner",
+                            RoomId = 4,
+                            Status = "New",
+                            TaskType = "Maintenance"
+                        });
                 });
 
             modelBuilder.Entity("HotelLibrary.models.Reservation", b =>
