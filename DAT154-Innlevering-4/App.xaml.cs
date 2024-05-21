@@ -33,7 +33,7 @@ namespace WPF
 
             services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
-            // todo add more services
+            services.AddScoped<ITaskRepository, TaskRepository>();
 
             services.AddTransient<MainViewModel>();
 

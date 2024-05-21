@@ -47,10 +47,9 @@
                     <Button Content="Add Room" Command="{Binding AddRoomCommand}"/>
                     <Button Content="Edit Room" Command="{Binding EditRoomCommand}"/>
                     <Button Content="Delete Room" Command="{Binding DeleteRoomCommand}"/>
-                    <Button Content="Mark as Needs Cleaning" Command="{Binding MarkRoomAsNeedsCleaningCommand}"/>
-                    <Button Content="Mark as Needs Maintenance" Command="{Binding MarkRoomAsNeedsMaintenanceCommand}"/>
-                    <Button Content="Mark as Cleaned" Command="{Binding MarkRoomAsCleanedCommand}"/>
-                    <Button Content="Mark as Maintained" Command="{Binding MarkRoomAsMaintainedCommand}"/>
+                    <Button Content="Toggle Cleaning" Command="{Binding ToggleCleaningCommand}" />
+                    <Button Content="Toggle Maintenance" Command="{Binding ToggleMaintenanceCommand}" />
+                    <Button Content="Toggle Room Service" Command="{Binding ToggleRoomServiceCommand}" />
                 </StackPanel>
             </TabItem>
             <TabItem Header="Reservations">
@@ -67,6 +66,21 @@
                     <Button Content="Edit Reservation" Command="{Binding EditReservationCommand}"/>
                     <Button Content="Delete Reservation" Command="{Binding DeleteReservationCommand}"/>
                     <Button Content="{Binding CheckInCheckOutButtonContent}" Command="{Binding CheckInCheckOutCommand}" IsEnabled="True"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Tasks">
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding Tasks}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedTask}" CanUserAddRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Room" Binding="{Binding Room.Name}" Width="*"/>
+                            <DataGridTextColumn Header="Task" Binding="{Binding TaskType}" Width="*"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+                            <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Delete Task" Command="{Binding DeleteTaskCommand}" />
+
+
                 </StackPanel>
             </TabItem>
         </TabControl>
