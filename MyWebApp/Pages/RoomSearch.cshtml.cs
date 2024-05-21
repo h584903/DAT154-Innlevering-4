@@ -47,5 +47,8 @@ namespace HotelWebApp.Pages
                 .GroupBy(r => r.Name)
                 .Select(group => group.First())
                 .ToList();
-        }    }
+        }
+
+        
+    }
 }

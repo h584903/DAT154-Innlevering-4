@@ -31,7 +31,7 @@ namespace HotelWebApp.Pages
                 RoomId = id,
                 CheckInDate = checkInDate,
                 CheckOutDate = checkOutDate,
-                CustomerName = "John Doe", // This should be replaced with actual customer data
+                CustomerName = User.Identity.Name, // This should be replaced with actual customer data
                 IsCheckedIn = false
             };
 

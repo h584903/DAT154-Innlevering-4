@@ -1,31 +1,114 @@
 ﻿@page
 @model HotelWebApp.Pages.RoomSearchModel
 
-<h1>Room Search Results</h1>
+<style>
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+    }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Beds</th>
-            <th>Size</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var room in Model.AvailableRooms)
-        {
-            <tr>
-                <td>@room.Name</td>
-                <td>@room.Beds</td>
-                <td>@room.Size</td>
-                <td>
-                    <a asp-page="./ReserveRoom" 
-                       asp-route-id="@room.Id" 
-                       asp-route-start_date="@Request.Query["start_date"]" 
-                       asp-route-stop_date="@Request.Query["stop_date"]">Make booking</a>
-                </td>
-            </tr>
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
         }
-    </tbody>
-</table>
+
+        .container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .container table, .container th, .container td {
+            border: 1px solid #ddd;
+        }
+
+        .container th, .container td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        .container th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .container tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .container tr:hover {
+            background-color: #ddd;
+        }
+
+        .container a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .container a:hover {
+                color: #0056b3;
+            }
+
+    .no-results {
+        text-align: center;
+        color: #555;
+        margin-top: 20px;
+    }
+
+    .login-message {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.1em;
+    }
+</style>
+
+<div class="container">
+    <h1>Room Search Results</h1>
+
+    @if (Model.AvailableRooms == null || !Model.AvailableRooms.Any())
+    {
+        <p class="no-results">No rooms are available for the selected criteria.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Beds</th>
+                    <th>Size</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var room in Model.AvailableRooms)
+                {
+                    <tr>
+                        <td>@room.Name</td>
+                        <td>@room.Beds</td>
+                        <td>@room.Size</td>
+                        <td>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-page="./ReserveRoom"
+                                   asp-route-id="@room.Id"
+                                   asp-route-start_date="@Request.Query["start_date"]"
+                                   asp-route-stop_date="@Request.Query["stop_date"]">Make booking</a>
+                            }
+                            else
+                            {
+                                <a asp-page="./LogIn">Log in to make booking</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
