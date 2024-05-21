@@ -1,17 +1,14 @@
 ﻿using Maui.ViewModels;
 using Microsoft.Maui.Controls;
-using Maui.Views;
-namespace Maui.Views;
 
-public partial class MainPage : ContentPage
+namespace Maui.Views
 {
-    public MainPage()
+    public partial class MainPage : ContentPage
     {
-        InitializeComponent();
+        public MainPage(MainViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
     }
-    public MainPage(MainViewModel viewModel) : this()
-    {
-        BindingContext = viewModel;
-    }
-
 }

@@ -1,18 +1,15 @@
-﻿using System.Diagnostics;
-using Microsoft.Maui;
-using Maui.Views;   
+﻿using Microsoft.Maui.Controls;
+using Maui.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Maui
 {
     public partial class App : Application
     {
-        public App()
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(serviceProvider.GetRequiredService<MainPage>());
         }
     }
-
-
 }
-
