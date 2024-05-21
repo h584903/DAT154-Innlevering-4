@@ -9,6 +9,7 @@ namespace Maui.ViewModels
     public class ServicePersonViewModel : BaseViewModel
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly IRoomRepository _roomRepository;
         private ObservableCollection<TaskModel> tasks;
         public ObservableCollection<TaskModel> Tasks
         {
@@ -19,9 +20,10 @@ namespace Maui.ViewModels
         public ICommand UpdateStatusCommand { get; }
         public ICommand AddNoteCommand { get; }
 
-        public ServicePersonViewModel(ITaskRepository taskRepository)
+        public ServicePersonViewModel(ITaskRepository taskRepository, IRoomRepository roomRepository)
         {
             _taskRepository = taskRepository;
+            _roomRepository = roomRepository;
             LoadTasks();
             UpdateStatusCommand = new Command<TaskModel>(UpdateStatus);
             AddNoteCommand = new Command<TaskModel>(AddNote);
@@ -45,6 +47,15 @@ namespace Maui.ViewModels
             {
                 task.Status = newStatus;
                 await _taskRepository.UpdateAsync(task);
+
+                if (newStatus == "Completed")
+                {
+                    await _roomRepository.MarkAsServicedAsync(task.RoomId);
+                } else
+                {
+                    await _roomRepository.MarkAsNeedsRoomServiceAsync(task.RoomId);
+                }
+
                 LoadTasks(); // Refresh the list
             }
         }

@@ -19,6 +19,7 @@ namespace HotelLibrary.Repositories
         System.Threading.Tasks.Task MarkAsCleanedAsync(int roomId);
         System.Threading.Tasks.Task MarkAsMaintainedAsync(int roomId);
         System.Threading.Tasks.Task MarkAsNeedsRoomServiceAsync(int roomId);
+        System.Threading.Tasks.Task MarkAsServicedAsync(int roomId);
         bool IsRoomAvailable(int roomId, DateTime date);
         bool IsRoomAvailablePeriod(int roomId, DateTime startDate, DateTime stopDate);
     }

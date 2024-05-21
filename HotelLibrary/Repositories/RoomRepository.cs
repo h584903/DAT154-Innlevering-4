@@ -98,6 +98,16 @@ namespace HotelLibrary.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+        public async System.Threading.Tasks.Task MarkAsServicedAsync(int roomId)
+        {
+            var room = await _context.Rooms.FindAsync(roomId);
+            if (room != null)
+            {
+                room.NeedsRoomService = false;
+                await _context.SaveChangesAsync();
+            }
+        }
+
         public bool IsRoomAvailable(int roomId, DateTime date)
         {
             System.Console.WriteLine(date);

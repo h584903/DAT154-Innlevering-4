@@ -66,6 +66,9 @@ namespace HotelLibrary.services
         {
             return _roomRepository.MarkAsNeedsRoomServiceAsync(roomId);
         }
-
+        public System.Threading.Tasks.Task MarkAsServicedAsync(int roomId)
+        {
+            return _roomRepository.MarkAsServicedAsync(roomId);
+        }
     }
 }
