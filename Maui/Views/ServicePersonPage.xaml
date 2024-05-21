@@ -15,10 +15,19 @@
                         <StackLayout Orientation="Vertical">
                             <Label Text="{Binding Description}" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
                             <Label Text="{Binding Status}" FontSize="14" TextColor="Gray" />
+                            <Label Text="{Binding Notes}" FontSize="14" TextColor="Gray" />
                             <Button Text="Update Status"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type local:ServicePersonPage}}, Path=BindingContext.UpdateStatusCommand}"
                                     CommandParameter="{Binding .}"
                                     BackgroundColor="#007bff"
+                                    TextColor="White"
+                                    CornerRadius="5"
+                                    HorizontalOptions="End"
+                                    Margin="0,5,0,0" />
+                            <Button Text="Add Note"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ServicePersonPage}}, Path=BindingContext.AddNoteCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="#28a745"
                                     TextColor="White"
                                     CornerRadius="5"
                                     HorizontalOptions="End"
