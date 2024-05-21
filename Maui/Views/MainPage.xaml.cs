@@ -5,9 +5,12 @@ namespace Maui.Views;
 
 public partial class MainPage : ContentPage
 {
-    public MainPage(MainViewModel viewModel)
+    public MainPage()
     {
         InitializeComponent();
+    }
+    public MainPage(MainViewModel viewModel) : this()
+    {
         BindingContext = viewModel;
     }
 
