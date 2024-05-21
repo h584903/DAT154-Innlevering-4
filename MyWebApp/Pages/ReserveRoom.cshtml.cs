@@ -21,27 +21,22 @@ namespace HotelWebApp.Pages
 
         public async Task<IActionResult> OnGetAsync(int id, string start_date, string stop_date)
         {
-            // Convert string dates to DateTime
             DateTime checkInDate = DateTime.Parse(start_date + " 12:00:00");
             DateTime checkOutDate = DateTime.Parse(stop_date + " 11:00:00");
 
-            // Create a new reservation
             Reservation = new Reservation
             {
                 RoomId = id,
                 CheckInDate = checkInDate,
                 CheckOutDate = checkOutDate,
-                CustomerName = User.Identity.Name, // This should be replaced with actual customer data
+                CustomerName = User.Identity.Name,
                 IsCheckedIn = false
             };
 
-            // Add the reservation to the context
             _context.Reservations.Add(Reservation);
 
-            // Save the changes to the database
             await _context.SaveChangesAsync();
 
-            // Redirect to a confirmation page or another appropriate page
             return RedirectToPage("./Reservations");
         }
     }

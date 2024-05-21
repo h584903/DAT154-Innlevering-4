@@ -24,7 +24,6 @@ namespace HotelWebApp.Pages
                 return Page();
             }
 
-            // Start a session with the provided username
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, Username)
@@ -34,7 +33,6 @@ namespace HotelWebApp.Pages
 
             var authProperties = new AuthenticationProperties
             {
-                // Configure authentication properties if needed
             };
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,

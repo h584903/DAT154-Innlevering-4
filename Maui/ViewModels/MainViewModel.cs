@@ -14,7 +14,7 @@ namespace Maui.ViewModels
 
         private void OnSelectRole(string role)
         {
-            // Do nothing here, as the navigation will be handled in the View
+          
         }
     }
 }

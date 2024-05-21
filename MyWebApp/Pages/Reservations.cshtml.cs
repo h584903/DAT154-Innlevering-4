@@ -25,7 +25,7 @@ namespace HotelWebApp.Pages
 
         public async System.Threading.Tasks.Task OnGetAsync()
         {
-            var username = User.Identity.Name; // Get the username of the logged-in user
+            var username = User.Identity.Name;
             Reservation = await _context.Reservations
                 .Where(r => r.CustomerName == username)
                 .Include(r => r.Room)

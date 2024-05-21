@@ -37,7 +37,6 @@ namespace HotelWebApp.Pages
 
                 var authProperties = new AuthenticationProperties
                 {
-                    // Configure authentication properties if needed
                 };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,

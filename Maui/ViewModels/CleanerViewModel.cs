@@ -56,7 +56,7 @@ namespace Maui.ViewModels
                     await _roomRepository.MarkAsNeedsCleaningAsync(task.RoomId);
                 }
 
-                LoadTasks(); // Refresh the list
+                LoadTasks();
             }
         }
 
@@ -76,7 +76,7 @@ namespace Maui.ViewModels
             {
                 task.Notes = note;
                 await _taskRepository.UpdateAsync(task);
-                LoadTasks(); // Refresh the list
+                LoadTasks();
             }
         }
     }
